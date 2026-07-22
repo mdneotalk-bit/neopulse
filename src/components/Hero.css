@@ -1,0 +1,476 @@
+.hero {
+  position: relative;
+  padding-top: clamp(28px, 5vw, 64px);
+  padding-bottom: clamp(36px, 5vw, 72px);
+  overflow: hidden;
+}
+.hero__inner {
+  position: relative;
+  z-index: 2;
+}
+
+/* ============================================================
+   Band 1 — the centrepiece stage
+   ============================================================ */
+.hero__stage {
+  max-width: 720px;
+  margin-inline: auto;
+  text-align: center;
+  position: relative;
+}
+
+/* NeoPulse wordmark lockup (live dot + wordmark + credential line) */
+.hero__brand {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 14px;
+  margin-bottom: clamp(18px, 2.6vw, 30px);
+}
+.hero__brand-mark {
+  display: inline-flex;
+  align-items: center;
+  gap: 13px;
+}
+.hero__brand-dot {
+  position: relative;
+  width: 12px;
+  height: 12px;
+  border-radius: 50%;
+  background: var(--emerald);
+  box-shadow: 0 0 0 4px color-mix(in srgb, var(--emerald) 18%, transparent);
+  flex-shrink: 0;
+}
+.hero__brand-dot::before {
+  content: '';
+  position: absolute;
+  inset: -6px;
+  border-radius: 50%;
+  border: 2px solid var(--emerald);
+  animation: brand-ping 2.4s var(--ease-out) infinite;
+}
+@keyframes brand-ping {
+  0% { transform: scale(0.55); opacity: 0.7; }
+  70%, 100% { transform: scale(1.6); opacity: 0; }
+}
+.hero__wordmark {
+  font-family: var(--font-display);
+  font-weight: 600;
+  font-size: clamp(2rem, 3.6vw, 2.9rem);
+  letter-spacing: -0.025em;
+  color: var(--ink);
+}
+
+/* Credential badge — a designed pill crediting the channel */
+.hero__brand-sub {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  font-family: var(--font-ui);
+  font-weight: 600;
+  font-size: 0.9rem;
+  letter-spacing: 0.005em;
+  color: var(--ink-soft);
+  background: var(--surface);
+  border: 1px solid var(--line);
+  border-radius: 100px;
+  padding: 7px 17px 7px 13px;
+  box-shadow: var(--shadow-sm);
+}
+.hero__brand-sub-icon {
+  color: var(--coral);
+  flex-shrink: 0;
+}
+.hero__brand-sub strong {
+  color: var(--ink);
+  font-weight: 700;
+}
+.hero__brand-sep {
+  color: var(--ink-dim);
+  font-weight: 700;
+}
+
+/* Headline */
+.hero__title {
+  font-size: clamp(2.6rem, 6vw, 4.8rem);
+  line-height: 1.02;
+  letter-spacing: -0.02em;
+  margin-inline: auto;
+  max-width: 15ch;
+}
+.hero__ink {
+  position: relative;
+  color: var(--emerald);
+  font-style: italic;
+  white-space: nowrap;
+}
+.hero__ink::after {
+  content: '';
+  position: absolute;
+  left: -2%;
+  right: -2%;
+  bottom: 0.06em;
+  height: 0.18em;
+  background: var(--amber);
+  opacity: 0.55;
+  border-radius: 4px;
+  z-index: -1;
+}
+
+/* ECG line — a living underline for the whole centrepiece.
+   Three stacked paths share one d: an always-visible faint GHOST (so the
+   trace can never be missing under preview throttling), a gradient LINE that
+   self-draws once (base state fully drawn), and a travelling SPARK glow. */
+.hero__ecg {
+  width: 100%;
+  height: clamp(64px, 8vw, 104px);
+  display: block;
+  overflow: visible;
+  margin-top: clamp(8px, 1.4vw, 16px);
+  margin-bottom: clamp(4px, 1vw, 10px);
+}
+.hero__ecg path {
+  fill: none;
+  stroke-linecap: round;
+  stroke-linejoin: round;
+  vector-effect: non-scaling-stroke;
+}
+.ecg__ghost {
+  stroke: rgba(16, 185, 129, 0.12);
+  stroke-width: 2.4;
+}
+.ecg__line {
+  stroke: url(#ecgGrad);
+  stroke-width: 2.4;
+  stroke-dasharray: 100;
+  stroke-dashoffset: 0;
+  animation: ecg-draw 2.2s var(--ease-out) 0.15s both;
+}
+@keyframes ecg-draw {
+  from { stroke-dashoffset: 100; }
+}
+.ecg__spark {
+  stroke: #ff5a63;
+  stroke-width: 3.6;
+  stroke-dasharray: 4 96;
+  stroke-dashoffset: 100;
+  filter: drop-shadow(0 0 7px rgba(255, 90, 99, 0.6));
+  animation: ecg-spark 3.8s linear 2.2s infinite;
+}
+@keyframes ecg-spark {
+  from { stroke-dashoffset: 100; }
+  to { stroke-dashoffset: 0; }
+}
+
+/* Subhead + actions */
+.hero__lede {
+  font-family: var(--font-read);
+  font-size: clamp(1.02rem, 1.5vw, 1.2rem);
+  color: var(--ink-soft);
+  line-height: 1.6;
+  max-width: 40ch;
+  margin: 0 auto clamp(20px, 2.6vw, 30px);
+}
+.hero__actions {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 12px;
+}
+
+/* ============================================================
+   Floating medical-icon chips (ring the stage, in the gutters)
+   ============================================================ */
+.hero__icons {
+  position: absolute;
+  inset: 0;
+  z-index: 1;
+  pointer-events: none;
+}
+.hero__icon {
+  position: absolute;
+  will-change: transform;
+  /* pointer-parallax lives on the OUTER element … */
+  transform: translate(calc(var(--mx, 0) * var(--depth, 8px)), calc(var(--my, 0) * var(--depth, 8px)));
+  transition: transform 0.5s var(--ease-out);
+}
+.hero__icon-chip {
+  display: grid;
+  place-items: center;
+  width: var(--sz, 52px);
+  height: var(--sz, 52px);
+  border-radius: 16px;
+  background: var(--tint);
+  color: var(--accent);
+  box-shadow: var(--shadow-sm);
+  /* … the gentle float lives on the INNER chip, so the two never fight */
+  animation: icon-float var(--dur, 7s) var(--ease-in-out) var(--delay, 0s) infinite alternate;
+}
+@keyframes icon-float {
+  from { transform: translateY(-8px) rotate(var(--rot, -3deg)); }
+  to { transform: translateY(10px) rotate(var(--rot2, 3deg)); }
+}
+
+.hero__icon.f1 { top: 13%; left: 6%; --depth: 12px; }
+.hero__icon.f2 { top: 34%; left: 11%; --depth: 7px; }
+.hero__icon.f3 { top: 60%; left: 5%; --depth: 10px; }
+.hero__icon.f4 { top: 74%; left: 15%; --depth: 6px; }
+.hero__icon.f5 { top: 11%; right: 7%; --depth: 12px; }
+.hero__icon.f6 { top: 30%; right: 13%; --depth: 7px; }
+.hero__icon.f7 { top: 54%; right: 5%; --depth: 10px; }
+.hero__icon.f8 { top: 74%; right: 12%; --depth: 8px; }
+
+/* ============================================================
+   Band 2 — the slim supporting strip (featured + trending)
+   ============================================================ */
+.hero__band {
+  margin-top: clamp(28px, 4vw, 48px);
+  padding-top: clamp(24px, 3vw, 36px);
+  border-top: 1px solid var(--line);
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 14px;
+  align-items: stretch;
+}
+
+/* Featured + Trending are matched: equal width (50/50) and equal height,
+   with a large, clearly-visible thumbnail on the featured card. */
+.hero__feature {
+  display: grid;
+  grid-template-columns: 330px 1fr;
+  background: var(--surface);
+  border: 1px solid var(--line);
+  border-radius: var(--radius-sm);
+  overflow: hidden;
+  box-shadow: var(--shadow-sm);
+  transition: transform 0.35s var(--ease-out), box-shadow 0.35s var(--ease-out);
+  will-change: transform;
+}
+.hero__feature:hover {
+  transform: translateY(-4px);
+  box-shadow: 0 24px 46px -28px color-mix(in srgb, var(--cat) 55%, rgba(22, 32, 46, 0.5));
+}
+.hero__feature-media {
+  position: relative;
+  overflow: hidden;
+  background: var(--surface-2);
+  /* true 16:9 box matches the maxres thumbnail, so the whole image shows
+     with no crop (nothing cut off) and no letterbox bars */
+  aspect-ratio: 16 / 9;
+  align-self: center;
+}
+.hero__feature-img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  transition: transform 0.5s var(--ease-out);
+}
+.hero__feature:hover .hero__feature-img {
+  transform: scale(1.05);
+}
+.hero__feature-badge {
+  position: absolute;
+  top: 8px;
+  left: 8px;
+  font-family: var(--font-ui);
+  font-weight: 800;
+  font-size: 0.58rem;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: #fff;
+  background: var(--cat);
+  padding: 4px 8px;
+  border-radius: 100px;
+  box-shadow: var(--shadow-sm);
+}
+.hero__feature-body {
+  padding: 12px 16px;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  gap: 7px;
+  min-width: 0;
+}
+.hero__feature-body .tag {
+  align-self: flex-start;
+  max-width: 100%;
+  font-size: 0.62rem;
+  padding: 3px 9px;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+.hero__feature-title {
+  font-family: var(--font-display);
+  font-weight: 600;
+  font-size: 1.02rem;
+  line-height: 1.18;
+  letter-spacing: -0.01em;
+  color: var(--ink);
+  transition: color 0.2s var(--ease-out);
+  display: -webkit-box;
+  -webkit-line-clamp: 2;
+  -webkit-box-orient: vertical;
+  overflow: hidden;
+}
+.hero__feature:hover .hero__feature-title {
+  color: var(--cat);
+}
+.hero__feature-excerpt {
+  color: var(--ink-soft);
+  font-size: 0.88rem;
+  line-height: 1.5;
+  display: -webkit-box;
+  -webkit-line-clamp: 2;
+  -webkit-box-orient: vertical;
+  overflow: hidden;
+}
+.hero__feature-meta {
+  margin-top: auto;
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  font-family: var(--font-ui);
+  font-size: 0.74rem;
+  color: var(--ink-dim);
+  font-weight: 500;
+}
+.hero__feature-read {
+  display: inline-flex;
+  align-items: center;
+  gap: 5px;
+}
+
+/* trending panel */
+.hero__trend {
+  background: var(--surface);
+  border: 1px solid var(--line);
+  border-radius: var(--radius-sm);
+  padding: 16px 22px;
+  box-shadow: var(--shadow-sm);
+  display: flex;
+  flex-direction: column;
+}
+.hero__trend-label {
+  display: inline-flex;
+  align-items: center;
+  gap: 7px;
+  font-family: var(--font-ui);
+  font-weight: 800;
+  font-size: 0.68rem;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  color: var(--ink-dim);
+  padding-bottom: 10px;
+  margin-bottom: 4px;
+  border-bottom: 1px solid var(--line);
+}
+.hero__trend-label svg {
+  color: var(--coral);
+}
+.hero__trend-list {
+  display: flex;
+  flex-direction: column;
+  flex: 1;
+}
+.hero__trend-item {
+  display: flex;
+  gap: 12px;
+  padding: 9px 0;
+  border-bottom: 1px solid var(--line);
+  align-items: center;
+}
+.hero__trend-item:last-child {
+  border-bottom: none;
+  padding-bottom: 0;
+}
+.hero__trend-n {
+  font-family: var(--font-display);
+  font-weight: 700;
+  font-size: 1rem;
+  flex-shrink: 0;
+}
+.hero__trend-text {
+  font-family: var(--font-ui);
+  font-weight: 600;
+  font-size: 0.88rem;
+  line-height: 1.3;
+  color: var(--ink);
+  transition: color 0.2s var(--ease-out);
+  display: -webkit-box;
+  -webkit-line-clamp: 1;
+  -webkit-box-orient: vertical;
+  overflow: hidden;
+}
+.hero__trend-item:hover .hero__trend-text {
+  color: var(--emerald);
+}
+
+/* ============================================================
+   Responsive
+   ============================================================ */
+@media (max-width: 1080px) {
+  .hero__band {
+    grid-template-columns: 1fr;
+  }
+  /* keep four corner chips */
+  .hero__icon.f2,
+  .hero__icon.f4,
+  .hero__icon.f6,
+  .hero__icon.f8 {
+    display: none;
+  }
+}
+@media (max-width: 720px) {
+  .hero__title {
+    font-size: clamp(2.2rem, 9vw, 3rem);
+  }
+  .hero__ecg {
+    height: 56px;
+  }
+  .hero__feature {
+    grid-template-columns: 1fr;
+  }
+  .hero__brand-sub {
+    font-size: 0.78rem;
+    padding: 6px 13px 6px 10px;
+  }
+  .hero__actions {
+    flex-direction: column;
+  }
+  .hero__actions .btn {
+    width: 100%;
+  }
+}
+@media (max-width: 640px) {
+  /* icons crowd centred text on small screens — clean them away */
+  .hero__icons {
+    display: none;
+  }
+}
+
+/* ============================================================
+   Reduced motion — freeze to a fully-formed, still state.
+   (The ECG line's default is already fully drawn; the ghost trace is
+   always visible; global .reveal is transform-only with opacity 1 — so
+   nothing can ever be left hidden by disabled/throttled animation.)
+   ============================================================ */
+@media (prefers-reduced-motion: reduce) {
+  .ecg__line {
+    animation: none;
+    stroke-dashoffset: 0;
+  }
+  .ecg__spark {
+    display: none;
+  }
+  .hero__icon {
+    transform: none;
+  }
+  .hero__icon-chip {
+    animation: none;
+  }
+  .hero__brand-dot::before {
+    animation: none;
+    opacity: 0;
+  }
+}

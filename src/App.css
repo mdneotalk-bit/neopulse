@@ -1,0 +1,50 @@
+/* Cross-cutting helpers shared across sections */
+
+.section-head {
+  display: flex;
+  align-items: flex-end;
+  justify-content: space-between;
+  gap: 28px;
+  flex-wrap: wrap;
+  margin-bottom: clamp(32px, 5vw, 56px);
+}
+.section-head__text {
+  max-width: 62ch;
+}
+.section-head .eyebrow {
+  margin-bottom: 16px;
+}
+.section-head p {
+  margin-top: 14px;
+}
+
+.arrow-link {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  font-family: var(--font-ui);
+  font-weight: 700;
+  font-size: 0.95rem;
+  color: var(--ink);
+  transition: gap 0.3s var(--ease-out), color 0.3s var(--ease-out);
+}
+.arrow-link svg {
+  transition: transform 0.3s var(--ease-out);
+}
+.arrow-link:hover {
+  color: var(--emerald);
+  gap: 12px;
+}
+.arrow-link:hover svg {
+  transform: translateX(3px);
+}
+
+/* Decorative soft blobs for dynamic backgrounds */
+.blob {
+  position: absolute;
+  border-radius: 50%;
+  filter: blur(46px);
+  opacity: 0.5;
+  pointer-events: none;
+  z-index: 0;
+}

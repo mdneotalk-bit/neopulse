@@ -1,0 +1,177 @@
+.acard {
+  display: flex;
+  flex-direction: column;
+  background: var(--surface);
+  border: 1px solid var(--line);
+  border-radius: var(--radius);
+  overflow: hidden;
+  box-shadow: var(--shadow-sm);
+  transition: transform 0.4s var(--ease-out), box-shadow 0.4s var(--ease-out),
+    border-color 0.4s var(--ease-out);
+  will-change: transform;
+  height: 100%;
+}
+.acard:hover {
+  transform: translateY(-6px);
+  box-shadow: 0 26px 50px -26px color-mix(in srgb, var(--cat) 55%, rgba(22, 32, 46, 0.5));
+  border-color: color-mix(in srgb, var(--cat) 35%, var(--line));
+}
+
+.acard__media {
+  position: relative;
+  aspect-ratio: 16 / 9;
+  overflow: hidden;
+  background: var(--surface-2);
+}
+.acard__img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  transition: transform 0.6s var(--ease-out);
+}
+.acard:hover .acard__img {
+  transform: scale(1.06);
+}
+.acard__cat {
+  position: absolute;
+  top: 12px;
+  left: 12px;
+  background: #fff;
+  box-shadow: var(--shadow-sm);
+}
+.acard__go {
+  position: absolute;
+  bottom: 12px;
+  right: 12px;
+  display: grid;
+  place-items: center;
+  width: 40px;
+  height: 40px;
+  border-radius: 50%;
+  background: #fff;
+  color: var(--cat);
+  transform: translateY(10px) scale(0.85);
+  opacity: 0;
+  transition: transform 0.35s var(--ease-out), opacity 0.35s var(--ease-out);
+  box-shadow: var(--shadow);
+}
+.acard:hover .acard__go {
+  transform: translateY(0) scale(1);
+  opacity: 1;
+}
+
+.acard__body {
+  display: flex;
+  flex-direction: column;
+  flex: 1;
+  padding: 20px 20px 18px;
+}
+.acard__title {
+  font-family: var(--font-display);
+  font-weight: 600;
+  font-size: 1.24rem;
+  line-height: 1.16;
+  letter-spacing: -0.01em;
+  color: var(--ink);
+  margin-bottom: 10px;
+  transition: color 0.25s var(--ease-out);
+  display: -webkit-box;
+  -webkit-line-clamp: 3;
+  -webkit-box-orient: vertical;
+  overflow: hidden;
+}
+.acard:hover .acard__title {
+  color: var(--cat);
+}
+.acard__excerpt {
+  font-size: 0.92rem;
+  color: var(--ink-soft);
+  line-height: 1.55;
+  margin-bottom: 16px;
+  display: -webkit-box;
+  -webkit-line-clamp: 2;
+  -webkit-box-orient: vertical;
+  overflow: hidden;
+}
+.acard__meta {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  margin-top: auto;
+  font-family: var(--font-ui);
+  font-size: 0.8rem;
+  color: var(--ink-dim);
+  font-weight: 500;
+}
+.acard__meta-dot {
+  width: 4px;
+  height: 4px;
+  border-radius: 50%;
+  background: var(--line-strong);
+}
+.acard__read {
+  display: inline-flex;
+  align-items: center;
+  gap: 5px;
+}
+
+/* Small variant (sidebar / compact rows) */
+.acard--sm {
+  flex-direction: row;
+  align-items: stretch;
+}
+.acard--sm .acard__media {
+  width: 116px;
+  aspect-ratio: auto;
+  flex-shrink: 0;
+}
+.acard--sm .acard__cat,
+.acard--sm .acard__go {
+  display: none;
+}
+.acard--sm .acard__body {
+  padding: 12px 14px;
+  justify-content: center;
+}
+.acard--sm .acard__title {
+  font-size: 1rem;
+  -webkit-line-clamp: 2;
+  margin-bottom: 8px;
+}
+
+/* Large variant */
+.acard--lg .acard__title {
+  font-size: clamp(1.5rem, 2.4vw, 2rem);
+}
+.acard--lg .acard__excerpt {
+  font-size: 1rem;
+  -webkit-line-clamp: 3;
+}
+
+/* Compact tile variant — small, uniform, dense grid */
+.acard--tile {
+  border-radius: 14px;
+}
+.acard--tile .acard__cat {
+  display: none; /* category is already shown by the section header */
+}
+.acard--tile .acard__play {
+  width: 42px;
+  height: 42px;
+}
+.acard--tile .acard__body {
+  padding: 12px 13px 12px;
+}
+.acard--tile .acard__title {
+  font-size: 0.94rem;
+  line-height: 1.24;
+  -webkit-line-clamp: 2;
+  margin-bottom: 8px;
+}
+.acard--tile .acard__meta {
+  padding-top: 10px;
+  font-size: 0.74rem;
+}
+.acard--tile:hover {
+  transform: translateY(-4px);
+}

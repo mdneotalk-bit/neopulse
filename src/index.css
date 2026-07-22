@@ -1,0 +1,304 @@
+/* ============================================================
+   MD-Neo Talks — Health Blog · Bright Design System
+   ============================================================ */
+
+:root {
+  /* Surfaces */
+  --bg: #fdfcfa;
+  --surface: #ffffff;
+  --surface-2: #f4f7fb;
+  --surface-warm: #fff6f0;
+  --ink: #16202e;
+  --ink-soft: #48566a;
+  --ink-dim: #71809a;
+  --line: #e7ecf3;
+  --line-strong: #d6deea;
+
+  /* Category / accent palette */
+  --coral: #ff5a63;
+  --coral-soft: #ffe7e8;
+  --emerald: #10b981;
+  --emerald-soft: #d6f5e9;
+  --amber: #f59e0b;
+  --amber-soft: #fdeecb;
+  --violet: #7c5cff;
+  --violet-soft: #e9e3ff;
+  --blue: #2e90fa;
+  --blue-soft: #dcecfe;
+  --pink: #f45fb4;
+  --pink-soft: #ffe3f4;
+
+  /* Brand primary */
+  --brand: #10b981;
+  --brand-ink: #06120d;
+
+  /* Type */
+  --font-display: 'Fraunces', Georgia, serif;
+  --font-ui: 'Plus Jakarta Sans', system-ui, sans-serif;
+  --font-read: 'Lora', Georgia, serif;
+
+  /* Layout */
+  --container: 1240px;
+  --gutter: clamp(18px, 4vw, 56px);
+  --radius: 20px;
+  --radius-lg: 30px;
+  --radius-sm: 12px;
+
+  /* Shadows (soft, slightly colored) */
+  --shadow-sm: 0 2px 10px -4px rgba(22, 32, 46, 0.12);
+  --shadow: 0 18px 44px -22px rgba(22, 32, 46, 0.28);
+  --shadow-lg: 0 34px 70px -30px rgba(22, 32, 46, 0.34);
+
+  /* Motion */
+  --ease-out: cubic-bezier(0.22, 1, 0.36, 1);
+  --ease-in-out: cubic-bezier(0.65, 0, 0.35, 1);
+}
+
+/* ---------- Reset ---------- */
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+html {
+  -webkit-text-size-adjust: 100%;
+  scroll-padding-top: 92px; /* offset for the sticky nav on anchor jumps */
+}
+body {
+  font-family: var(--font-ui);
+  background: var(--bg);
+  color: var(--ink);
+  line-height: 1.6;
+  font-size: 17px;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  overflow-x: hidden;
+  text-rendering: optimizeLegibility;
+}
+
+/* Soft ambient color wash */
+body::before {
+  content: '';
+  position: fixed;
+  inset: 0;
+  z-index: -1;
+  pointer-events: none;
+  background:
+    radial-gradient(46% 40% at 88% -4%, rgba(124, 92, 255, 0.08), transparent 60%),
+    radial-gradient(40% 38% at 4% 6%, rgba(16, 185, 129, 0.09), transparent 60%),
+    radial-gradient(34% 32% at 98% 46%, rgba(255, 90, 99, 0.07), transparent 60%),
+    radial-gradient(30% 30% at 6% 92%, rgba(255, 90, 99, 0.05), transparent 60%),
+    radial-gradient(44% 40% at 60% 108%, rgba(46, 144, 250, 0.07), transparent 60%);
+}
+
+img {
+  max-width: 100%;
+  display: block;
+}
+a {
+  color: inherit;
+  text-decoration: none;
+}
+button {
+  font-family: inherit;
+  cursor: pointer;
+  border: none;
+  background: none;
+  color: inherit;
+}
+::selection {
+  background: var(--emerald);
+  color: #fff;
+}
+
+/* Scrollbar */
+::-webkit-scrollbar {
+  width: 12px;
+}
+::-webkit-scrollbar-track {
+  background: var(--surface-2);
+}
+::-webkit-scrollbar-thumb {
+  background: var(--line-strong);
+  border-radius: 20px;
+  border: 3px solid var(--surface-2);
+}
+::-webkit-scrollbar-thumb:hover {
+  background: var(--emerald);
+}
+
+/* ---------- Layout primitives ---------- */
+.container {
+  width: 100%;
+  max-width: var(--container);
+  margin-inline: auto;
+  padding-inline: var(--gutter);
+}
+.section {
+  position: relative;
+  padding-block: clamp(56px, 9vw, 110px);
+}
+
+/* ---------- Type helpers ---------- */
+.eyebrow {
+  display: inline-flex;
+  align-items: center;
+  gap: 9px;
+  font-family: var(--font-ui);
+  font-weight: 700;
+  font-size: 0.76rem;
+  letter-spacing: 0.16em;
+  text-transform: uppercase;
+  color: var(--emerald);
+}
+.eyebrow::before {
+  content: '';
+  width: 22px;
+  height: 3px;
+  border-radius: 3px;
+  background: currentColor;
+}
+
+.display {
+  font-family: var(--font-display);
+  font-weight: 600;
+  font-optical-sizing: auto;
+  line-height: 1.02;
+  letter-spacing: -0.015em;
+}
+.section-title {
+  font-family: var(--font-display);
+  font-weight: 600;
+  line-height: 1.02;
+  letter-spacing: -0.02em;
+  font-size: clamp(2.1rem, 5vw, 3.6rem);
+  color: var(--ink);
+}
+.lede {
+  font-size: clamp(1.02rem, 1.5vw, 1.22rem);
+  color: var(--ink-soft);
+  line-height: 1.6;
+  max-width: 56ch;
+}
+
+/* Cool brand gradient for text (the "Pulse" of NeoPulse + ECG rhyme) */
+.grad-cool {
+  background: linear-gradient(90deg, var(--emerald), var(--blue), var(--violet));
+  -webkit-background-clip: text;
+  background-clip: text;
+  -webkit-text-fill-color: transparent;
+  color: transparent;
+}
+
+/* ---------- Buttons ---------- */
+.btn {
+  --btn-bg: var(--emerald);
+  --btn-fg: #fff;
+  position: relative;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 9px;
+  font-family: var(--font-ui);
+  font-weight: 700;
+  font-size: 0.95rem;
+  padding: 14px 24px;
+  border-radius: 100px;
+  background: var(--btn-bg);
+  color: var(--btn-fg);
+  box-shadow: 0 12px 26px -12px color-mix(in srgb, var(--btn-bg) 75%, transparent);
+  transition: transform 0.3s var(--ease-out), box-shadow 0.3s var(--ease-out),
+    filter 0.3s var(--ease-out);
+  will-change: transform;
+}
+.btn:hover {
+  transform: translateY(-3px);
+  filter: brightness(1.04);
+  box-shadow: 0 20px 38px -14px color-mix(in srgb, var(--btn-bg) 80%, transparent);
+}
+.btn:active {
+  transform: translateY(-1px);
+}
+.btn--ghost {
+  --btn-fg: var(--ink);
+  background: var(--surface);
+  border: 1.5px solid var(--line-strong);
+  box-shadow: var(--shadow-sm);
+}
+.btn--ghost:hover {
+  border-color: var(--emerald);
+  color: var(--emerald);
+}
+.btn--coral {
+  --btn-bg: var(--coral);
+}
+.btn--dark {
+  --btn-bg: var(--ink);
+}
+.btn__icon {
+  transition: transform 0.3s var(--ease-out);
+}
+.btn:hover .btn__icon {
+  transform: translateX(3px);
+}
+
+/* ---------- Category tag ---------- */
+.tag {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  font-family: var(--font-ui);
+  font-weight: 700;
+  font-size: 0.72rem;
+  letter-spacing: 0.04em;
+  text-transform: uppercase;
+  padding: 5px 12px;
+  border-radius: 100px;
+  background: var(--cat-soft, var(--surface-2));
+  color: var(--cat, var(--ink-soft));
+}
+.tag::before {
+  content: '';
+  width: 6px;
+  height: 6px;
+  border-radius: 50%;
+  background: currentColor;
+}
+
+/* ---------- Reveal ----------
+   Transform-only (opacity always 1) so content is NEVER left invisible —
+   worst case an element sits a few px lower until it slides into place. */
+.reveal {
+  transform: translateY(26px);
+  transition: transform 0.75s var(--ease-out);
+}
+.reveal.is-in {
+  transform: none;
+}
+@media (prefers-reduced-motion: reduce) {
+  .reveal {
+    transform: none;
+  }
+  body::before {
+    display: none;
+  }
+}
+
+:focus-visible {
+  outline: 2px solid var(--emerald);
+  outline-offset: 3px;
+  border-radius: 4px;
+}
+.sr-only {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  padding: 0;
+  margin: -1px;
+  overflow: hidden;
+  clip: rect(0, 0, 0, 0);
+  white-space: nowrap;
+  border: 0;
+}
