@@ -6,14 +6,7 @@
   font-style: italic;
 }
 
-.portfolio__grid {
-  display: grid;
-  grid-template-columns: 1.5fr 1fr;
-  gap: clamp(28px, 4vw, 56px);
-  align-items: start;
-}
-
-/* Column sub-headings */
+/* Column / block sub-headings */
 .portfolio__h {
   display: flex;
   align-items: center;
@@ -25,7 +18,7 @@
   color: var(--ink);
   margin-bottom: 22px;
 }
-.portfolio__h:not(:first-child) {
+.portfolio__h:not(:first-of-type) {
   margin-top: 40px;
 }
 .portfolio__h-icon {
@@ -39,38 +32,36 @@
   flex-shrink: 0;
 }
 
-/* ---------- Experience timeline ---------- */
-.pf-timeline {
-  list-style: none;
-  position: relative;
-  padding-left: 26px;
-}
-.pf-timeline::before {
-  content: '';
-  position: absolute;
-  left: 5px;
-  top: 6px;
-  bottom: 6px;
-  width: 2px;
-  background: var(--line);
+/* ---------- Experience — full-width card grid ---------- */
+.pf-exp-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 18px;
 }
 .pf-exp {
-  position: relative;
-  padding-bottom: 26px;
+  background: var(--surface);
+  border: 1px solid var(--line);
+  border-top: 3px solid var(--accent);
+  border-radius: var(--radius-sm);
+  padding: 18px 20px 20px;
+  box-shadow: var(--shadow-sm);
+  display: flex;
+  flex-direction: column;
+  transition: transform 0.3s var(--ease-out), box-shadow 0.3s var(--ease-out);
+  will-change: transform;
 }
-.pf-exp:last-child {
-  padding-bottom: 0;
+.pf-exp:hover {
+  transform: translateY(-3px);
+  box-shadow: 0 22px 44px -26px color-mix(in srgb, var(--accent) 50%, rgba(22, 32, 46, 0.5));
 }
-.pf-exp__node {
-  position: absolute;
-  left: -26px;
-  top: 5px;
-  width: 12px;
-  height: 12px;
-  border-radius: 50%;
-  background: var(--accent);
-  border: 3px solid var(--bg);
-  box-shadow: 0 0 0 2px color-mix(in srgb, var(--accent) 35%, transparent);
+/* The current/first role headlines the section across the full width */
+.pf-exp:first-child {
+  grid-column: 1 / -1;
+}
+.pf-exp:first-child .pf-exp__points {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 7px 32px;
 }
 .pf-exp__top {
   display: flex;
@@ -102,7 +93,7 @@
   align-items: center;
   gap: 10px;
   flex-wrap: wrap;
-  margin: 6px 0 10px;
+  margin: 6px 0 12px;
   font-family: var(--font-ui);
   font-size: 0.86rem;
 }
@@ -121,11 +112,12 @@
   display: flex;
   flex-direction: column;
   gap: 7px;
+  margin-top: auto;
 }
 .pf-exp__points li {
   position: relative;
   padding-left: 18px;
-  font-size: 0.92rem;
+  font-size: 0.9rem;
   line-height: 1.55;
   color: var(--ink-soft);
 }
@@ -138,7 +130,7 @@
   height: 6px;
   border-radius: 50%;
   background: var(--accent);
-  opacity: 0.5;
+  opacity: 0.55;
 }
 
 /* ---------- Clinical clerkships ---------- */
@@ -178,11 +170,13 @@
   gap: 4px;
 }
 
-/* ---------- Side cards ---------- */
-.portfolio__side {
-  display: flex;
-  flex-direction: column;
+/* ---------- Education · Skills · Awards — equal-height card row ---------- */
+.portfolio__cards {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
   gap: 20px;
+  align-items: stretch;
+  margin-top: clamp(30px, 4vw, 48px);
 }
 .pf-card {
   background: var(--surface);
@@ -190,6 +184,16 @@
   border-radius: var(--radius);
   padding: 22px 24px;
   box-shadow: var(--shadow-sm);
+  height: 100%;
+}
+/* Skills spans the full width so its groups lay out horizontally (short band) */
+.pf-card--wide {
+  grid-column: 1 / -1;
+}
+.pf-card--wide .pf-skills {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(210px, 1fr));
+  gap: 18px 28px;
 }
 .pf-card__h {
   display: flex;
@@ -325,9 +329,20 @@
 }
 
 /* ---------- Responsive ---------- */
-@media (max-width: 900px) {
-  .portfolio__grid {
+@media (max-width: 620px) {
+  .pf-exp-grid {
     grid-template-columns: 1fr;
-    gap: 36px;
+  }
+  .pf-exp:first-child {
+    grid-column: auto;
+  }
+  .pf-exp:first-child .pf-exp__points {
+    grid-template-columns: 1fr;
+  }
+  .portfolio__cards {
+    grid-template-columns: 1fr;
+  }
+  .pf-card--wide {
+    grid-column: auto;
   }
 }
