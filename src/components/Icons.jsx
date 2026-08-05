@@ -219,3 +219,46 @@ export const Brain = ({ size = 20, className = '' }) => (
     <path d="M12 5a3 3 0 0 1 5.6-1.5A2.8 2.8 0 0 1 20 8.5a3 3 0 0 1 .4 5.3A3 3 0 0 1 18 19a2.8 2.8 0 0 1-6 .3Z" />
   </svg>
 )
+
+/* ---------- Portfolio / CV glyphs ---------- */
+
+export const Briefcase = ({ size = 18, className = '' }) => (
+  <svg className={className} width={size} height={size} viewBox="0 0 24 24" fill="none"
+    stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" aria-hidden="true">
+    <rect x="2" y="7" width="20" height="14" rx="2.5" />
+    <path d="M8 7V5.5A2.5 2.5 0 0 1 10.5 3h3A2.5 2.5 0 0 1 16 5.5V7" />
+    <path d="M2 12.5h20" />
+  </svg>
+)
+
+export const GraduationCap = ({ size = 18, className = '' }) => (
+  <svg className={className} width={size} height={size} viewBox="0 0 24 24" fill="none"
+    stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" aria-hidden="true">
+    <path d="M22 10 12 5 2 10l10 5 10-5Z" />
+    <path d="M6 12v4.5c0 1.1 2.7 2.5 6 2.5s6-1.4 6-2.5V12" />
+    <path d="M22 10v5" />
+  </svg>
+)
+
+export const Award = ({ size = 18, className = '' }) => (
+  <svg className={className} width={size} height={size} viewBox="0 0 24 24" fill="none"
+    stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" aria-hidden="true">
+    <circle cx="12" cy="8.5" r="5.5" />
+    <path d="M8.6 13.2 7 22l5-3 5 3-1.6-8.8" />
+  </svg>
+)
+
+export const Sparkle = ({ size = 18, className = '' }) => (
+  <svg className={className} width={size} height={size} viewBox="0 0 24 24" fill="currentColor" aria-hidden="true">
+    <path d="M12 2.5c.4 3.9 1.6 5.1 5.5 5.5-3.9.4-5.1 1.6-5.5 5.5-.4-3.9-1.6-5.1-5.5-5.5 3.9-.4 5.1-1.6 5.5-5.5Z" />
+    <path d="M18.5 13.5c.24 2 .95 2.76 3 3-2.05.24-2.76.95-3 3-.24-2.05-.95-2.76-3-3 2.05-.24 2.76-.95 3-3Z" />
+  </svg>
+)
+
+export const MapPin = ({ size = 15, className = '' }) => (
+  <svg className={className} width={size} height={size} viewBox="0 0 24 24" fill="none"
+    stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" aria-hidden="true">
+    <path d="M20 10c0 5.5-8 11.5-8 11.5S4 15.5 4 10a8 8 0 0 1 16 0Z" />
+    <circle cx="12" cy="10" r="2.6" />
+  </svg>
+)

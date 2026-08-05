@@ -1,0 +1,333 @@
+.portfolio {
+  position: relative;
+}
+.portfolio__hl {
+  color: var(--emerald);
+  font-style: italic;
+}
+
+.portfolio__grid {
+  display: grid;
+  grid-template-columns: 1.5fr 1fr;
+  gap: clamp(28px, 4vw, 56px);
+  align-items: start;
+}
+
+/* Column sub-headings */
+.portfolio__h {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  font-family: var(--font-display);
+  font-weight: 600;
+  font-size: 1.35rem;
+  letter-spacing: -0.01em;
+  color: var(--ink);
+  margin-bottom: 22px;
+}
+.portfolio__h:not(:first-child) {
+  margin-top: 40px;
+}
+.portfolio__h-icon {
+  display: grid;
+  place-items: center;
+  width: 34px;
+  height: 34px;
+  border-radius: 10px;
+  background: var(--emerald-soft);
+  color: var(--emerald);
+  flex-shrink: 0;
+}
+
+/* ---------- Experience timeline ---------- */
+.pf-timeline {
+  list-style: none;
+  position: relative;
+  padding-left: 26px;
+}
+.pf-timeline::before {
+  content: '';
+  position: absolute;
+  left: 5px;
+  top: 6px;
+  bottom: 6px;
+  width: 2px;
+  background: var(--line);
+}
+.pf-exp {
+  position: relative;
+  padding-bottom: 26px;
+}
+.pf-exp:last-child {
+  padding-bottom: 0;
+}
+.pf-exp__node {
+  position: absolute;
+  left: -26px;
+  top: 5px;
+  width: 12px;
+  height: 12px;
+  border-radius: 50%;
+  background: var(--accent);
+  border: 3px solid var(--bg);
+  box-shadow: 0 0 0 2px color-mix(in srgb, var(--accent) 35%, transparent);
+}
+.pf-exp__top {
+  display: flex;
+  justify-content: space-between;
+  align-items: baseline;
+  gap: 14px;
+  flex-wrap: wrap;
+}
+.pf-exp__role {
+  font-family: var(--font-ui);
+  font-weight: 700;
+  font-size: 1.02rem;
+  color: var(--ink);
+  line-height: 1.3;
+}
+.pf-exp__period {
+  font-family: var(--font-ui);
+  font-weight: 700;
+  font-size: 0.76rem;
+  color: var(--accent);
+  background: color-mix(in srgb, var(--accent) 12%, transparent);
+  padding: 3px 10px;
+  border-radius: 100px;
+  white-space: nowrap;
+  flex-shrink: 0;
+}
+.pf-exp__meta {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  flex-wrap: wrap;
+  margin: 6px 0 10px;
+  font-family: var(--font-ui);
+  font-size: 0.86rem;
+}
+.pf-exp__org {
+  font-weight: 600;
+  color: var(--ink-soft);
+}
+.pf-exp__loc {
+  display: inline-flex;
+  align-items: center;
+  gap: 4px;
+  color: var(--ink-dim);
+}
+.pf-exp__points {
+  list-style: none;
+  display: flex;
+  flex-direction: column;
+  gap: 7px;
+}
+.pf-exp__points li {
+  position: relative;
+  padding-left: 18px;
+  font-size: 0.92rem;
+  line-height: 1.55;
+  color: var(--ink-soft);
+}
+.pf-exp__points li::before {
+  content: '';
+  position: absolute;
+  left: 2px;
+  top: 0.62em;
+  width: 6px;
+  height: 6px;
+  border-radius: 50%;
+  background: var(--accent);
+  opacity: 0.5;
+}
+
+/* ---------- Clinical clerkships ---------- */
+.pf-clerk-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(220px, 1fr));
+  gap: 14px;
+}
+.pf-clerk {
+  background: var(--surface);
+  border: 1px solid var(--line);
+  border-radius: var(--radius-sm);
+  padding: 16px 18px;
+  box-shadow: var(--shadow-sm);
+}
+.pf-clerk__spec {
+  font-family: var(--font-ui);
+  font-weight: 700;
+  font-size: 0.96rem;
+  color: var(--ink);
+}
+.pf-clerk__hosp {
+  font-size: 0.86rem;
+  color: var(--ink-soft);
+  margin: 4px 0 8px;
+}
+.pf-clerk__meta {
+  display: flex;
+  justify-content: space-between;
+  gap: 8px;
+  font-size: 0.78rem;
+  color: var(--ink-dim);
+}
+.pf-clerk__meta span {
+  display: inline-flex;
+  align-items: center;
+  gap: 4px;
+}
+
+/* ---------- Side cards ---------- */
+.portfolio__side {
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+}
+.pf-card {
+  background: var(--surface);
+  border: 1px solid var(--line);
+  border-radius: var(--radius);
+  padding: 22px 24px;
+  box-shadow: var(--shadow-sm);
+}
+.pf-card__h {
+  display: flex;
+  align-items: center;
+  gap: 11px;
+  font-family: var(--font-display);
+  font-weight: 600;
+  font-size: 1.2rem;
+  color: var(--ink);
+  margin-bottom: 18px;
+}
+
+/* Education */
+.pf-edu {
+  list-style: none;
+  display: flex;
+  flex-direction: column;
+}
+.pf-edu__item {
+  display: flex;
+  flex-direction: column;
+  gap: 3px;
+  padding: 13px 0 13px 16px;
+  border-left: 2px solid color-mix(in srgb, var(--accent) 45%, var(--line));
+}
+.pf-edu__item:not(:last-child) {
+  border-bottom: 1px solid var(--line);
+}
+.pf-edu__top {
+  display: flex;
+  justify-content: space-between;
+  align-items: baseline;
+  gap: 10px;
+}
+.pf-edu__degree {
+  font-family: var(--font-ui);
+  font-weight: 700;
+  font-size: 0.96rem;
+  color: var(--ink);
+  line-height: 1.25;
+}
+.pf-edu__period {
+  font-size: 0.74rem;
+  font-weight: 600;
+  color: var(--accent);
+  white-space: nowrap;
+  flex-shrink: 0;
+}
+.pf-edu__school {
+  font-size: 0.86rem;
+  color: var(--ink-soft);
+}
+.pf-edu__loc {
+  display: inline-flex;
+  align-items: center;
+  gap: 4px;
+  font-size: 0.78rem;
+  color: var(--ink-dim);
+}
+
+/* Skills */
+.pf-skills {
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+}
+.pf-skill-group__label {
+  display: block;
+  font-family: var(--font-ui);
+  font-weight: 700;
+  font-size: 0.72rem;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: var(--ink-dim);
+  margin-bottom: 8px;
+}
+.pf-skill-tags {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 7px;
+}
+.pf-skill-tag {
+  font-family: var(--font-ui);
+  font-weight: 600;
+  font-size: 0.8rem;
+  color: var(--ink-soft);
+  background: var(--surface-2);
+  border: 1px solid var(--line);
+  padding: 5px 11px;
+  border-radius: 100px;
+}
+
+/* Awards */
+.pf-awards {
+  list-style: none;
+  display: flex;
+  flex-direction: column;
+  gap: 14px;
+}
+.pf-award {
+  display: flex;
+  gap: 12px;
+}
+.pf-award__year {
+  font-family: var(--font-display);
+  font-weight: 700;
+  font-size: 0.82rem;
+  color: var(--amber);
+  padding-top: 1px;
+  flex-shrink: 0;
+  width: 32px;
+}
+.pf-award__body {
+  display: flex;
+  flex-direction: column;
+  gap: 2px;
+}
+.pf-award__title {
+  font-family: var(--font-ui);
+  font-weight: 700;
+  font-size: 0.9rem;
+  color: var(--ink);
+  line-height: 1.3;
+}
+.pf-award__detail {
+  font-size: 0.84rem;
+  color: var(--ink-soft);
+  line-height: 1.5;
+}
+.pf-award__org {
+  font-size: 0.78rem;
+  color: var(--ink-dim);
+}
+
+/* ---------- Responsive ---------- */
+@media (max-width: 900px) {
+  .portfolio__grid {
+    grid-template-columns: 1fr;
+    gap: 36px;
+  }
+}

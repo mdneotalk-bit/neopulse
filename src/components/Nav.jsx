@@ -9,6 +9,7 @@ const LINKS = [
   { id: '#news', label: 'Health News' },
   { id: '#tips', label: 'Tips' },
   { id: '#about', label: 'About' },
+  { id: '#portfolio', label: 'Portfolio' },
 ]
 
 export default function Nav() {

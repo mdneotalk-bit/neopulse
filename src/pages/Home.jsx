@@ -5,6 +5,7 @@ import Tips from '../components/Tips'
 import LiveNews from '../components/LiveNews'
 import Newsletter from '../components/Newsletter'
 import About from '../components/About'
+import Portfolio from '../components/Portfolio'
 
 export default function Home() {
   return (
@@ -14,6 +15,7 @@ export default function Home() {
       <Articles />
       <Tips />
       <About />
+      <Portfolio />
       <LiveNews />
       <Newsletter />
     </>
